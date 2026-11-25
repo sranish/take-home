@@ -1,0 +1,88 @@
+# PASS 1: model answers from memory, NO browsing. Written 2026-11-23 before any lookup for these apps.
+# Columns: id | app | auth | access | api | official_mcp | verdict
+1|Salesforce|OAuth2 (connected/external client app; JWT bearer, client credentials)|self-serve via free Developer Edition; production API needs Enterprise+ or API add-on|REST+SOAP+Bulk+GraphQL, very broad|yes|buildable
+2|HubSpot|OAuth2 + private app access token (API keys sunset)|self-serve free developer account|REST, broad|yes|buildable
+3|Pipedrive|API token + OAuth2|self-serve sandbox / trial|REST, broad|no|buildable
+4|Attio|OAuth2 + API key (bearer)|self-serve free plan|REST|yes|buildable
+5|Twenty|API key (bearer)|self-serve: open-source self-host or cloud trial|REST + GraphQL|unknown|buildable
+6|Podio|OAuth2 (client id/secret; app and password flows)|self-serve API key generation|REST|no|buildable, legacy
+7|Zoho CRM|OAuth2|self-serve free edition / dev console; multi data centre|REST, broad|yes|buildable
+8|Close|API key (Basic) + OAuth2|self-serve 14-day trial, no free plan|REST|yes|buildable
+9|Copper|API key + user email headers|self-serve trial|REST|unknown|buildable
+10|DealCloud|OAuth2 client credentials|gated: enterprise customers only|REST|no|gated
+11|Zendesk|API token (Basic) + OAuth2|self-serve trial|REST, broad|no|buildable
+12|Intercom|Bearer access token + OAuth2|self-serve free developer workspace|REST|yes|buildable
+13|Freshdesk|API key via Basic auth|self-serve free plan / trial|REST|unknown|buildable
+14|Front|API token (bearer) + OAuth2|self-serve|REST|unknown|buildable
+15|Pylon|Bearer API token|needs account, admin creates token; plan gate possible|REST|yes|buildable with account
+16|LiveAgent|API key header (v3)|self-serve trial|REST|no|buildable
+17|Plain|Bearer API key|self-serve trial|GraphQL|yes|buildable
+18|Help Scout|OAuth2 (authorization code + client credentials)|self-serve trial|REST|unknown|buildable
+19|Gorgias|Basic (email + API key); OAuth2 for public apps|needs account / trial|REST|unknown|buildable
+20|Gladly|Basic (email + API token)|gated: customers only|REST|no|gated
+21|Slack|OAuth2 (bot and user tokens)|self-serve free workspace; rate limits for non-Marketplace apps|Web API + Events, broad|yes|buildable
+22|Twilio|Basic (Account SID + Auth Token, or API key + secret)|self-serve free trial|REST, broad|yes (alpha)|buildable
+23|Zoho Cliq|OAuth2|self-serve free|REST|yes (Zoho MCP)|buildable
+24|Lark (Larksuite)|app_id/app_secret to tenant_access_token; OAuth user_access_token|self-serve custom app, admin approval to publish|REST, broad|yes|buildable
+25|Pumble|API key via add-ons|self-serve free|small REST|no|partial
+26|Discord|Bot token + OAuth2|self-serve free; privileged intents need verification|REST + Gateway|no|buildable
+27|Telegram|Bot token (Bot API); api_id/api_hash for MTProto|self-serve free via BotFather|HTTP Bot API|no|buildable
+28|WhatsApp Business|Bearer access token (system user), Meta app|test number self-serve; production needs business verification|Graph API REST|no|buildable with friction
+29|Aircall|Basic (api_id:api_token); OAuth2 for partners|needs paid Aircall account|REST|unknown|buildable with account
+30|Vonage|API key + secret, JWT, Basic|self-serve free credit|REST, broad|unknown|buildable
+31|Google Ads|OAuth2 + developer token|gated: developer token approval for production|REST + gRPC|yes (read-only)|buildable with approval
+32|Meta Ads|OAuth2 access tokens|standard access self-serve; advanced access needs app review + business verification|Graph API|unknown|buildable with review
+33|LinkedIn Ads|OAuth2 (3-legged)|gated: Advertising API application approval|REST|no|gated by approval
+34|GoHighLevel|OAuth2 (marketplace app) + Private Integration Token|self-serve developer account; sub-account needs paid plan|REST v2|yes|buildable
+35|Mailchimp|API key (Basic) + OAuth2|self-serve free plan|REST|unknown|buildable
+36|Klaviyo|Private API key + OAuth2|self-serve free|REST (JSON:API)|yes|buildable
+37|systeme.io|API key header|self-serve|small REST|no|buildable
+38|Pinterest|OAuth2|self-serve trial access; standard access needs review|REST v5|unknown|buildable
+39|Threads (Meta)|OAuth2 (Meta app)|self-serve dev; app review for production|REST|no|buildable
+40|SendGrid|Bearer API key|self-serve; free plan retired, trial only|REST v3|unknown|buildable
+41|Shopify|OAuth2 / Admin API access tokens, client credentials|self-serve partner account + free dev store|GraphQL Admin (REST legacy)|yes|buildable
+42|WooCommerce|Consumer key/secret (Basic over HTTPS, OAuth1.0a over HTTP)|self-serve, self-hosted open source|REST|yes (beta)|buildable
+43|BigCommerce|X-Auth-Token (store API account); OAuth2 for apps|self-serve sandbox / trial|REST + GraphQL|unknown|buildable
+44|Salesforce Commerce Cloud|OAuth2 client credentials via Account Manager; SLAS|gated: customers / partners only|REST (SCAPI, OCAPI)|unknown|gated
+45|Magento (Adobe Commerce)|OAuth1.0a integration tokens, bearer admin/customer tokens; IMS OAuth for SaaS|self-serve for open source; Adobe Commerce paid|REST + GraphQL|unknown|buildable
+46|Squarespace|API key (bearer) + OAuth2|API keys need Commerce Advanced plan; OAuth by approval|REST, commerce-focused|no|partly gated
+47|Ecwid|OAuth2 / secret token (bearer)|plan-gated: paid plan needed|REST|no|plan-gated
+48|Gumroad|OAuth2 access token|self-serve free|small REST|no|buildable
+49|Amazon Selling Partner|LWA OAuth2 (SigV4 removed)|gated: seller account + developer registration approval|REST, broad|unknown|gated by approval
+51|DataForSEO|Basic (login + password)|self-serve, free credit|REST|yes|buildable
+52|SE Ranking|API key token|plan-gated: API needs higher plan or API subscription|REST|yes|buildable with plan
+53|Ahrefs|Bearer API key|gated: Enterprise plan only|REST|yes|plan-gated
+54|MrScraper|API key header|self-serve trial|REST|unknown|buildable
+55|Apify|Bearer API token|self-serve free monthly credit|REST|yes|buildable
+56|Firecrawl|Bearer API key|self-serve free credits|REST|yes|buildable
+57|Bright Data|Bearer API key|self-serve trial; KYC for some products|REST|yes|buildable
+60|Clay|API key (webhooks / enterprise API)|no general public API; enterprise only|limited|unknown|limited
+61|GitHub|PAT, OAuth app, GitHub App|self-serve free|REST + GraphQL|yes|buildable
+62|Vercel|Bearer access token; OAuth integration|self-serve free|REST|yes|buildable
+63|Netlify|PAT (bearer), OAuth2|self-serve free|REST|yes|buildable
+64|Cloudflare|Bearer API token (legacy global key)|self-serve free|REST|yes|buildable
+65|Supabase|Management API: PAT / OAuth2; project API keys|self-serve free|REST|yes|buildable
+66|Neo4j|Aura API: OAuth2 client credentials; DB: basic / bearer|self-serve free AuraDB|REST (Aura API, Query API)|yes|buildable
+67|Snowflake|Key-pair JWT, OAuth, PAT|self-serve 30-day trial|SQL REST API + REST APIs|yes|buildable
+68|MongoDB Atlas|Service accounts (OAuth2 client credentials); API keys via HTTP Digest|self-serve free tier|REST Admin API|yes|buildable
+69|Datadog|API key + application key headers|self-serve 14-day trial|REST|yes|buildable
+70|Sentry|Bearer auth token, OAuth|self-serve free|REST|yes|buildable
+71|Notion|Bearer integration token, OAuth2|self-serve free|REST|yes|buildable
+72|Airtable|PAT, OAuth2|self-serve free|REST|unknown|buildable
+73|Linear|API key, OAuth2|self-serve free|GraphQL|yes|buildable
+74|Jira|API token (Basic), OAuth2 3LO|self-serve free|REST|yes|buildable
+75|Asana|PAT, OAuth2|self-serve free|REST|yes|buildable
+76|Monday.com|API token, OAuth2|self-serve free / trial|GraphQL|yes|buildable
+77|ClickUp|Personal token, OAuth2|self-serve free|REST|yes|buildable
+78|Coda|Bearer API token|self-serve free|REST|unknown|buildable
+79|Smartsheet|Bearer token, OAuth2|trial / developer sandbox|REST|unknown|buildable
+80|Harvest|PAT + Account ID header, OAuth2|self-serve trial|REST v2|no|buildable
+81|Stripe|Secret key, restricted keys, OAuth (Connect)|self-serve free test mode|REST|yes|buildable
+82|Plaid|client_id + secret|self-serve sandbox; production needs approval|REST|yes|buildable (sandbox)
+83|Binance|API key + HMAC/RSA/Ed25519 signature|self-serve with KYC; regional limits; testnet|REST + WebSocket|unknown|buildable
+86|QuickBooks|OAuth2|free sandbox; production needs app assessment|REST|yes|buildable
+87|Xero|OAuth2|free developer account + demo company; connection limits until certified|REST|yes|buildable
+88|Brex|OAuth2 + user tokens (bearer)|needs Brex customer account|REST|unknown|gated by account
+89|Ramp|OAuth2 (client credentials, authorization code)|needs Ramp account; sandbox on request|REST|yes|gated by account
+95|Reducto|Bearer API key|self-serve free credits|REST|unknown|buildable
+96|Devin|Bearer API key|paid plan needed|REST|yes|buildable with paid plan

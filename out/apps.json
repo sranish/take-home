@@ -1,0 +1,2687 @@
+{
+ "generated": "2026-11-23",
+ "schema": {
+  "gate": {
+   "FREE": "Self-serve, free",
+   "TRIAL": "Self-serve, trial",
+   "ACCOUNT": "Account needed, free path not confirmed",
+   "PLAN": "Paid plan",
+   "REVIEW": "Approval or review",
+   "SALES": "Contact sales",
+   "CUSTOMER": "Existing customer only",
+   "LOCAL": "No credentials, local tool",
+   "UNKNOWN": "Not confirmed"
+  },
+  "mcp": {
+   "OFFICIAL": "Official",
+   "PARTIAL": "Official, limited",
+   "SECONDARY": "Claimed, not vendor-confirmed",
+   "NONE": "None found",
+   "UNCHECKED": "Not checked",
+   "NA": "Not applicable"
+  },
+  "verdict": {
+   "READY": "Buildable today",
+   "FRICTION": "Buildable with a gate",
+   "GATED": "Gated",
+   "NOT_API": "Not an API",
+   "UNCLEAR": "Unclear"
+  },
+  "status": {
+   "V": "Verified",
+   "P": "Partly verified",
+   "U": "Unverified"
+  },
+  "auth_family": {
+   "O": "OAuth only",
+   "K": "Key or token only",
+   "OK": "OAuth and key or token",
+   "N": "No auth",
+   "?": "Not confirmed"
+  }
+ },
+ "stats": {
+  "total": 100,
+  "gate": {
+   "FREE": 44,
+   "TRIAL": 9,
+   "CUSTOMER": 3,
+   "ACCOUNT": 21,
+   "SALES": 4,
+   "PLAN": 6,
+   "REVIEW": 8,
+   "UNKNOWN": 3,
+   "LOCAL": 2
+  },
+  "mcp": {
+   "OFFICIAL": 64,
+   "PARTIAL": 23,
+   "NONE": 9,
+   "SECONDARY": 2,
+   "NA": 2
+  },
+  "verdict": {
+   "READY": 72,
+   "GATED": 11,
+   "FRICTION": 12,
+   "UNCLEAR": 3,
+   "NOT_API": 2
+  },
+  "status": {
+   "V": 72,
+   "P": 25,
+   "U": 3
+  },
+  "auth_family": {
+   "O": 23,
+   "OK": 43,
+   "K": 29,
+   "N": 2,
+   "?": 3
+  },
+  "self_serve": 53,
+  "mcp_official_or_limited": 87,
+  "pass1": [
+   {
+    "field": "auth",
+    "right": 76,
+    "partial": 7,
+    "wrong": 0,
+    "blank": 0,
+    "uncheckable": 3,
+    "scored": 83,
+    "acc": 96
+   },
+   {
+    "field": "access gate",
+    "right": 45,
+    "partial": 7,
+    "wrong": 1,
+    "blank": 0,
+    "uncheckable": 33,
+    "scored": 53,
+    "acc": 92
+   },
+   {
+    "field": "official MCP",
+    "right": 47,
+    "partial": 4,
+    "wrong": 8,
+    "blank": 24,
+    "uncheckable": 3,
+    "scored": 83,
+    "acc": 59
+   }
+  ],
+  "pass1_overall_accuracy_pct": 81,
+  "blind_audit": {
+   "auth": 14,
+   "gate": 14,
+   "mcp": 14,
+   "n": 20,
+   "after": {
+    "auth": 19,
+    "gate": 18,
+    "mcp": 18
+   },
+   "corrected": 13,
+   "open_or_kept": 5,
+   "mcp_none_in_sample": 5,
+   "mcp_none_overturned": 2
+  }
+ },
+ "apps": [
+  {
+   "id": 1,
+   "name": "Salesforce",
+   "category": "CRM and Sales",
+   "what": "CRM platform",
+   "auth": "OAuth 2.0 flows through an external client app or connected app",
+   "gate": "FREE",
+   "gate_note": "Free Developer Edition signup. The signup page does not say API access is included.",
+   "api": "REST (other Salesforce APIs not checked)",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Hosted MCP Servers, GA on 29 Apr 2026, OAuth, Enterprise Edition and above",
+   "verdict": "READY",
+   "blocker": "Production orgs need an edition with API access and an admin to enable it",
+   "evidence": [
+    "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm",
+    "https://developer.salesforce.com/signup",
+    "https://developer.salesforce.com/blogs/2026/04/salesforce-hosted-mcp-servers-are-now-generally-available"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 2,
+   "name": "HubSpot",
+   "category": "CRM and Sales",
+   "what": "CRM and marketing platform",
+   "auth": "OAuth for multi-account apps, static access tokens for single-account apps. Service Keys (public beta since Feb 2026) replace legacy private apps for system-to-system access.",
+   "gate": "FREE",
+   "gate_note": "Free developer test accounts, created self-serve",
+   "api": "REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Remote server at mcp.hubspot.com, OAuth 2.0",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.hubspot.com/docs/guides/apps/authentication/intro-to-auth",
+    "https://developers.hubspot.com/docs/getting-started/account-types",
+    "https://developers.hubspot.com/mcp",
+    "https://developers.hubspot.com/changelog/service-keys"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "rechecked"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 3,
+   "name": "Pipedrive",
+   "category": "CRM and Sales",
+   "what": "Sales CRM",
+   "auth": "API token, plus OAuth 2.0",
+   "gate": "FREE",
+   "gate_note": "Sandbox account through a sign-up form. The page does not say it is free.",
+   "api": "REST, 48 endpoint categories",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Native MCP server confirmed on Pipedrive feature and newsroom pages: OAuth, read and write, all plans. The URL mcp.pipedrive.ai/mcp still comes from third parties only.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.pipedrive.com/docs/api/v1",
+    "https://developers.pipedrive.com",
+    "https://tldv.io/blog/pipedrive-mcp",
+    "https://pipedrive.com/en/features/mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "secondary-mcp",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYN"
+  },
+  {
+   "id": 4,
+   "name": "Attio",
+   "category": "CRM and Sales",
+   "what": "CRM for startups",
+   "auth": "OAuth 2.0 and API keys sent as Bearer",
+   "gate": "FREE",
+   "gate_note": "Free plan for up to three users",
+   "api": "REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.attio.com/mcp, OAuth, included on every plan",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.attio.com/rest-api/guides/authentication",
+    "https://attio.com/pricing",
+    "https://docs.attio.com/mcp/overview"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 5,
+   "name": "Twenty",
+   "category": "CRM and Sales",
+   "what": "Open-source CRM",
+   "auth": "Bearer API key from Settings, plus OAuth with PKCE and client credentials",
+   "gate": "FREE",
+   "gate_note": "Open source self-host or Twenty cloud. Plan gate not stated.",
+   "api": "REST and GraphQL, generated from the workspace schema",
+   "mcp": "OFFICIAL",
+   "mcp_note": "your-workspace.twenty.com/mcp, OAuth or API key, record CRUD plus metadata and workflows",
+   "verdict": "READY",
+   "blocker": "Base URL differs for self-hosted instances",
+   "evidence": [
+    "https://docs.twenty.com/developers/extend/api.md",
+    "https://docs.twenty.com/_llms/en/developers.txt",
+    "https://docs.twenty.com/user-guide/ai/capabilities/mcp.md"
+   ],
+   "conf": "H",
+   "status": "P",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "PYU"
+  },
+  {
+   "id": 6,
+   "name": "Podio",
+   "category": "CRM and Sales",
+   "what": "Work management and CRM apps",
+   "auth": "OAuth2 with server-side, client-side, password and app flows",
+   "gate": "FREE",
+   "gate_note": "Register an app for a client ID and secret. Cost not stated.",
+   "api": "Covers all Podio functionality according to the vendor",
+   "mcp": "PARTIAL",
+   "mcp_note": "mcp.podio.com/mcp, OAuth 2.0, 22 tools, labelled beta for evaluation and testing",
+   "verdict": "READY",
+   "blocker": "Older platform, check maintenance before investing",
+   "evidence": [
+    "https://developers.podio.com/authentication",
+    "https://developers.podio.com",
+    "https://progress.com/podio/documentation/using-podio/podio-mcp-server"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 7,
+   "name": "Zoho CRM",
+   "category": "CRM and Sales",
+   "what": "CRM",
+   "auth": "OAuth 2.0 only",
+   "gate": "FREE",
+   "gate_note": "API on every edition including Free (5,000 credits per 24 hours)",
+   "api": "REST-style, broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Zoho MCP covers CRM, OAuth, free sign-up",
+   "verdict": "READY",
+   "blocker": "Data-centre specific domains",
+   "evidence": [
+    "https://zoho.com/crm/developer/docs/api/v8/oauth-overview.html",
+    "https://zoho.com/crm/developer/docs/api/v8/api-limits.html",
+    "https://zoho.com/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 8,
+   "name": "Close",
+   "category": "CRM and Sales",
+   "what": "Sales CRM with calling",
+   "auth": "API key over HTTP Basic, plus OAuth",
+   "gate": "TRIAL",
+   "gate_note": "14-day free trial, no free plan. High-volume API access is not on the Solo plan.",
+   "api": "REST, about nine resource groups",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.close.com/mcp, OAuth 2.0 with dynamic client registration or an API key header",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developer.close.com/topics/authentication",
+    "https://close.com/pricing",
+    "https://developer.close.com/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 9,
+   "name": "Copper",
+   "category": "CRM and Sales",
+   "what": "CRM for Google Workspace",
+   "auth": "API key, plus OAuth 2.0 for partner integrations",
+   "gate": "TRIAL",
+   "gate_note": "Free trial without a card. Trial length and which plans include the API are not shown.",
+   "api": "REST, about 14 resource areas",
+   "mcp": "NONE",
+   "mcp_note": "No vendor MCP found on developer.copper.com or copper.com. Only third-party servers exist.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developer.copper.com/introduction/authentication.html",
+    "https://copper.com/pricing"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "PYU"
+  },
+  {
+   "id": 10,
+   "name": "DealCloud",
+   "category": "CRM and Sales",
+   "what": "CRM for capital markets (Intapp)",
+   "auth": "OAuth2 client credentials, 15-minute tokens",
+   "gate": "CUSTOMER",
+   "gate_note": "Client ID and secret come from a user inside a customer DealCloud site. No public signup found (inferred, not stated).",
+   "api": "REST v1: schema, data, users, publications",
+   "mcp": "OFFICIAL",
+   "mcp_note": "MCP section in vendor docs, OAuth per user. The blind audit adds that it runs through Intapp Celeste and needs that licence.",
+   "verdict": "GATED",
+   "blocker": "Needs an existing DealCloud customer site",
+   "evidence": [
+    "https://api.docs.dealcloud.com",
+    "https://api.docs.dealcloud.com/docs/token",
+    "https://api.docs.dealcloud.com/mcp/authentication"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYN"
+  },
+  {
+   "id": 11,
+   "name": "Zendesk",
+   "category": "Support and Helpdesk",
+   "what": "Customer support suite",
+   "auth": "OAuth access tokens are preferred. API token over Basic is now labelled deprecated.",
+   "gate": "TRIAL",
+   "gate_note": "14-day trial is self-serve. Sponsored developer account needs a request form.",
+   "api": "REST v2, broad",
+   "mcp": "PARTIAL",
+   "mcp_note": "A Zendesk MCP server was announced at Relate 2026 for early access. No public setup docs yet. The GA MCP piece is an outbound MCP client.",
+   "verdict": "READY",
+   "blocker": "Build on OAuth, not API tokens",
+   "evidence": [
+    "https://developer.zendesk.com/api-reference/introduction/security-and-auth",
+    "https://developer.zendesk.com/documentation/api-basics/getting-started/getting-a-trial-or-sponsored-account-for-development",
+    "https://tldv.io/blog/zendesk-mcp",
+    "https://zendesk.com/in/newsroom/articles/relate-2026"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "deprecation",
+    "secondary-mcp",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "PYY"
+  },
+  {
+   "id": 12,
+   "name": "Intercom",
+   "category": "Support and Helpdesk",
+   "what": "Customer messaging",
+   "auth": "Access token for private apps, OAuth for public apps, both Bearer",
+   "gate": "FREE",
+   "gate_note": "Token is issued when you create an app in Developer Hub. A free workspace is not stated.",
+   "api": "REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.intercom.com/mcp (US) and an EU endpoint, OAuth or Bearer token, AU not supported",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication",
+    "https://developers.intercom.com/docs/guides/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 13,
+   "name": "Freshdesk",
+   "category": "Support and Helpdesk",
+   "what": "Helpdesk",
+   "auth": "API key over HTTP Basic. Endpoints show OAuth scope labels but no OAuth flow is documented.",
+   "gate": "TRIAL",
+   "gate_note": "Key is in profile settings. Trial accounts get 50 calls per minute.",
+   "api": "REST, broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Freshworks MCP at your-subdomain.freshdesk.com/mcp, API key auth, Growth, Pro and Enterprise plans, generally available from 10 Sep 2026",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.freshdesk.com/api",
+    "https://support.freshdesk.com/support/solutions/articles/50000012670-model-context-protocol-mcp-integration-in-freshdesk-eap-"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 14,
+   "name": "Front",
+   "category": "Support and Helpdesk",
+   "what": "Shared inbox",
+   "auth": "API tokens and OAuth. OAuth is required for partner integrations.",
+   "gate": "ACCOUNT",
+   "gate_note": "Only admins create tokens. Signup path and plan gate not checked.",
+   "api": "Core API: conversations, contacts, inboxes",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.frontapp.com/mcp, OAuth 2.1 with a client ID and secret, no dynamic registration",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://dev.frontapp.com/docs/create-and-revoke-api-tokens",
+    "https://dev.frontapp.com/docs/mcp-server.md"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YPU"
+  },
+  {
+   "id": 15,
+   "name": "Pylon",
+   "category": "Support and Helpdesk",
+   "what": "B2B support platform",
+   "auth": "Bearer API token created by an admin",
+   "gate": "SALES",
+   "gate_note": "No self-serve signup. Book a demo, and trials are set up by sales.",
+   "api": "REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Pylon MCP server listed on Professional, Advanced and Enterprise. Endpoint not read.",
+   "verdict": "GATED",
+   "blocker": "Sales-led onboarding",
+   "evidence": [
+    "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+    "https://usepylon.com/pricing"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 16,
+   "name": "LiveAgent",
+   "category": "Support and Helpdesk",
+   "what": "Helpdesk and live chat",
+   "auth": "API key in an apikey header (v3). v1 is deprecated.",
+   "gate": "TRIAL",
+   "gate_note": "30-day free trial. An admin creates the key.",
+   "api": "REST v3, Swagger inside the account",
+   "mcp": "PARTIAL",
+   "mcp_note": "Official MCP at your-domain/api/mcp, OAuth 2.1 or Bearer, labelled early preview",
+   "verdict": "READY",
+   "blocker": "Per-account base URL",
+   "evidence": [
+    "https://support.liveagent.com/741982-API-key",
+    "https://liveagent.com/features/api",
+    "https://support.liveagent.com/647358-MCP-Integration-for-Agents"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYN"
+  },
+  {
+   "id": 17,
+   "name": "Plain",
+   "category": "Support and Helpdesk",
+   "what": "B2B support platform",
+   "auth": "Bearer API key from a machine user, plus OAuth apps",
+   "gate": "ACCOUNT",
+   "gate_note": "Plan gate not stated",
+   "api": "GraphQL",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.plain.com/mcp, OAuth, about 400 tools over threads, customers and workflows. An earlier pass only found the docs-search server.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://plain.com/docs/api-reference/graphql/authentication",
+    "https://plain.com/docs/llms.txt",
+    "https://plain.com/docs/agents/mcp-server.md"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-N"
+  },
+  {
+   "id": 18,
+   "name": "Help Scout",
+   "category": "Support and Helpdesk",
+   "what": "Helpdesk",
+   "auth": "OAuth 2.0 with authorization code and client credentials",
+   "gate": "PLAN",
+   "gate_note": "A Free plan exists but API access is listed only for Standard, Plus and Pro. 15-day trial.",
+   "api": "REST-style v2, broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.helpscout.net/mcp, OAuth, generally available. New connections are read-only for now.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developer.helpscout.com/mailbox-api/overview/authentication",
+    "https://helpscout.com/pricing",
+    "https://docs.helpscout.com/article/1779-connect-your-ai-agent-with-help-scout-to-search-conversations-and-pull-reports"
+   ],
+   "conf": "H",
+   "status": "P",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YPU"
+  },
+  {
+   "id": 19,
+   "name": "Gorgias",
+   "category": "Support and Helpdesk",
+   "what": "Ecommerce helpdesk",
+   "auth": "API key over HTTP Basic for private apps. OAuth2 is mandatory for public apps.",
+   "gate": "ACCOUNT",
+   "gate_note": "Owner or admin creates the key. Available on all Helpdesk plans. Trial not checked.",
+   "api": "REST, about 23 resource groups",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.gorgias.com/mcp, browser OAuth, read and write on all Helpdesk plans",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.gorgias.com/reference/authentication",
+    "https://docs.gorgias.com/en-US/rest-api-208286",
+    "https://developers.gorgias.com/llms.txt",
+    "https://docs.gorgias.com/en-US/connect-your-ai-assistant-to-gorgias-6310546"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 20,
+   "name": "Gladly",
+   "category": "Support and Helpdesk",
+   "what": "Customer service platform",
+   "auth": "Token-based Basic auth. An admin grants the API User permission.",
+   "gate": "SALES",
+   "gate_note": "Site offers only a demo and contact sales",
+   "api": "REST, broad",
+   "mcp": "PARTIAL",
+   "mcp_note": "Gladly MCP for Claude is a closed beta, Claude only, acting as the signed-in user",
+   "verdict": "GATED",
+   "blocker": "Needs an existing Gladly customer account",
+   "evidence": [
+    "https://developer.gladly.com/rest",
+    "https://gladly.ai",
+    "https://help.gladly.com/docs/what-is-the-gladly-mcp-for-claude.md"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 21,
+   "name": "Slack",
+   "category": "Communications and Messaging",
+   "what": "Team messaging",
+   "auth": "OAuth 2.0 with user, bot and app tokens",
+   "gate": "FREE",
+   "gate_note": "App is created in app settings. Workspace plan gate not stated.",
+   "api": "Web API (not described on the auth page)",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.slack.com/mcp, confidential OAuth, only Marketplace-published and internal apps",
+   "verdict": "READY",
+   "blocker": "MCP is limited to Marketplace or internal apps",
+   "evidence": [
+    "https://docs.slack.dev/authentication",
+    "https://docs.slack.dev/ai/mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 22,
+   "name": "Twilio",
+   "category": "Communications and Messaging",
+   "what": "Communications APIs",
+   "auth": "OAuth 2.0 is recommended for new integrations. API keys also work. Account SID and Auth Token are legacy.",
+   "gate": "TRIAL",
+   "gate_note": "Free trial without a card, expires after 30 days, verified recipients only",
+   "api": "REST, broad",
+   "mcp": "PARTIAL",
+   "mcp_note": "Official MCP at mcp.twilio.com/docs is docs-only, public beta, and takes no credentials",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://twilio.com/docs/usage/requests-to-twilio",
+    "https://twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account",
+    "https://twilio.com/docs/mcp",
+    "https://twilio.com/docs/usage/api-security-reference-guide/secure-auth"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "PYP"
+  },
+  {
+   "id": 23,
+   "name": "Zoho Cliq",
+   "category": "Communications and Messaging",
+   "what": "Team chat",
+   "auth": "OAuth 2.0, client registered in the Zoho developer console",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated on the API page",
+   "api": "REST, broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Zoho MCP lists Cliq, OAuth",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://zoho.com/cliq/help/restapi/v2",
+    "https://zoho.com/mcp"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 24,
+   "name": "Lark (Larksuite)",
+   "category": "Communications and Messaging",
+   "what": "Collaboration suite",
+   "auth": "App ID and App Secret for an app access token, OAuth for a user access token",
+   "gate": "ACCOUNT",
+   "gate_note": "Create a custom app on Lark Open Platform. Admin approval not verified because the docs page did not render.",
+   "api": "OpenAPI, broad: messages, docs, calendar, Bitable",
+   "mcp": "PARTIAL",
+   "mcp_note": "Official @larksuiteoapi/lark-mcp package, runs locally, beta",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://npmjs.com/package/@larksuiteoapi/lark-mcp",
+    "https://open.larksuite.com"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "js-blocked"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 25,
+   "name": "Pumble",
+   "category": "Communications and Messaging",
+   "what": "Team chat",
+   "auth": "API key from the API add-on. Vendor pages disagree on the header: Api-Key (help) and Authorization Bearer (blog).",
+   "gate": "FREE",
+   "gate_note": "Add-on is on all plans for owners, admins and members",
+   "api": "Small: send, reply, delete, react, list and create channels. No Events API.",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.pumble.com/mcp with token and x-app-token headers, per the vendor blog",
+   "verdict": "READY",
+   "blocker": "Narrow API surface",
+   "evidence": [
+    "https://pumble.com/help/integrations/api-keys-integration",
+    "https://pumble.com/learn/?p=16174"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "conflict"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYN"
+  },
+  {
+   "id": 26,
+   "name": "Discord",
+   "category": "Communications and Messaging",
+   "what": "Community chat",
+   "auth": "Bot token or OAuth2 bearer token",
+   "gate": "FREE",
+   "gate_note": "From app settings. Approval gate not stated.",
+   "api": "REST plus a WebSocket Gateway",
+   "mcp": "PARTIAL",
+   "mcp_note": "docs.discord.com/mcp is read-only and scoped to documentation. No account or guild MCP.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.discord.com/developers/reference",
+    "https://docs.discord.com/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 27,
+   "name": "Telegram",
+   "category": "Communications and Messaging",
+   "what": "Messaging",
+   "auth": "Bot token in the URL path",
+   "gate": "FREE",
+   "gate_note": "Token from BotFather. Cost not stated.",
+   "api": "HTTP Bot API, broad",
+   "mcp": "NONE",
+   "mcp_note": "Nothing on telegram.org. All Telegram MCP servers are community-built.",
+   "verdict": "READY",
+   "blocker": "User-account API (MTProto) is a different thing",
+   "evidence": [
+    "https://core.telegram.org/bots/api"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 28,
+   "name": "WhatsApp Business",
+   "category": "Communications and Messaging",
+   "what": "Business messaging (Meta)",
+   "auth": "Access tokens. The page says three types but does not name them.",
+   "gate": "REVIEW",
+   "gate_note": "Test number is self-serve with up to 5 recipients. Production gates not stated on the pages read.",
+   "api": "Cloud API built on Graph API",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Meta lists official remote MCP servers for WhatsApp. Endpoint not read.",
+   "verdict": "FRICTION",
+   "blocker": "Production messaging needs Meta business setup",
+   "evidence": [
+    "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started",
+    "https://developers.facebook.com/docs/whatsapp/cloud-api/overview",
+    "https://developers.facebook.com/documentation/mcp"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "-YN"
+  },
+  {
+   "id": 29,
+   "name": "Aircall",
+   "category": "Communications and Messaging",
+   "what": "Cloud phone system",
+   "auth": "Basic auth with api_id and api_token for customers, OAuth 2.0 for technology partners",
+   "gate": "ACCOUNT",
+   "gate_note": "API keys in Company Settings. OAuth credentials need a request form and a Marketplace listing.",
+   "api": "REST, broad",
+   "mcp": "PARTIAL",
+   "mcp_note": "Beta server at mcp.aircall.io/mcp, read-only, needs beta enrolment through an account manager and the AI add-on. The developer FAQ still says there is no MCP server.",
+   "verdict": "FRICTION",
+   "blocker": "OAuth needs partner listing",
+   "evidence": [
+    "https://developers.aircall.io/api-references",
+    "https://support.aircall.io/en-gb/articles/39677926959517"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected",
+    "conflict"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 30,
+   "name": "Vonage",
+   "category": "Communications and Messaging",
+   "what": "Communications APIs",
+   "auth": "API key and secret over Basic, or JWT with an application ID and private key",
+   "gate": "FREE",
+   "gate_note": "Key and secret are created with the account. Free credit not stated.",
+   "api": "25 API products",
+   "mcp": "PARTIAL",
+   "mcp_note": "Vendor npm package @vonage/vonage-mcp-server-api-bindings runs locally with API keys and acts on the account. A docs MCP also exists. No hosted server.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developer.vonage.com/en/getting-started/concepts/authentication",
+    "https://developer.vonage.com/en/mcp-server/conceptual-guides/introduction-to-vonage-mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-U"
+  },
+  {
+   "id": 31,
+   "name": "Google Ads",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Ad platform",
+   "auth": "OAuth 2.0. Access levels are now per Google Cloud project. Developer tokens were sunset on 9 Sep 2026.",
+   "gate": "REVIEW",
+   "gate_note": "Test level is instant but covers test accounts only. Explorer, Basic and Standard need an application.",
+   "api": "Google Ads API",
+   "mcp": "OFFICIAL",
+   "mcp_note": "googleads/google-ads-mcp, OAuth 2.0, read plus partial mutate, v0.0.6",
+   "verdict": "FRICTION",
+   "blocker": "Production access needs an approved access level",
+   "evidence": [
+    "https://developers.google.com/google-ads/api/docs/api-policy/access-levels",
+    "https://developers.google.com/google-ads/api/docs/developer-toolkit/mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "changed-recently"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "PPP"
+  },
+  {
+   "id": 32,
+   "name": "Meta Ads",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Ad platform",
+   "auth": "OAuth with scopes such as ads_management",
+   "gate": "REVIEW",
+   "gate_note": "Standard access by default is for development. Advanced access needs App Review. Business verification for sensitive data.",
+   "api": "Graph API",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.facebook.com/ads, OAuth through your Meta app, developer launch 16 Jul 2026",
+   "verdict": "FRICTION",
+   "blocker": "App Review for advanced access",
+   "evidence": [
+    "https://developers.facebook.com/docs/marketing-api/get-started/authorization",
+    "https://developers.facebook.com/blog/post/2026/07/16/meta-ads-mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 33,
+   "name": "LinkedIn Ads",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Ad platform",
+   "auth": "Access token from a LinkedIn developer app",
+   "gate": "REVIEW",
+   "gate_note": "You must apply for the Advertising API. Development tier first, then Standard with a video demo.",
+   "api": "Six API products including Advertising and Lead Sync",
+   "mcp": "NONE",
+   "mcp_note": "No MCP in the LinkedIn Marketing docs. Only third-party servers.",
+   "verdict": "GATED",
+   "blocker": "Advertising API approval",
+   "evidence": [
+    "https://learn.microsoft.com/en-us/linkedin/marketing/quick-start"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 34,
+   "name": "GoHighLevel",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Agency CRM and marketing",
+   "auth": "OAuth 2.0 for public apps, Private Integration Token for one sub-account",
+   "gate": "ACCOUNT",
+   "gate_note": "How to get credentials and the plan gate are not stated on the page read",
+   "api": "REST, about 45 API areas",
+   "mcp": "OFFICIAL",
+   "mcp_note": "services.leadconnectorhq.com/mcp, sign in with a HighLevel login, 717 actions",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc",
+    "https://marketplace.gohighlevel.com/docs/other/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "legacy-hint"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 35,
+   "name": "Mailchimp",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Email marketing",
+   "auth": "API key over HTTP Basic. OAuth 2 for apps is linked but was not read.",
+   "gate": "ACCOUNT",
+   "gate_note": "Key generation steps and plan gate not on the pages read",
+   "api": "REST with some deviations",
+   "mcp": "PARTIAL",
+   "mcp_note": "mailchimp.com/developer/_mcp/server searches documentation, not the account. The earlier Transactional-API claim was not confirmed.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://mailchimp.com/developer/marketing/guides/quick-start",
+    "https://mailchimp.com/developer/marketing/docs/fundamentals",
+    "https://mailchimp.com/developer/marketing/build/ai-tools/mcp-server.md"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "secondary-mcp",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-U"
+  },
+  {
+   "id": 36,
+   "name": "Klaviyo",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Email and SMS marketing",
+   "auth": "Private API key, OAuth, and a public key for client-side calls",
+   "gate": "ACCOUNT",
+   "gate_note": "An Owner, Admin or Manager creates the key. Plan gate not stated.",
+   "api": "23 API areas",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Klaviyo MCP server documented by the vendor. Endpoint is on a linked page.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.klaviyo.com/en/docs/authenticate_",
+    "https://developers.klaviyo.com/en/docs/klaviyo_mcp_server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 37,
+   "name": "systeme.io",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Funnel builder",
+   "auth": "Public API key. The X-API-Key header name comes from third-party docs.",
+   "gate": "FREE",
+   "gate_note": "A free plan exists and the MCP server is included in all plans. Keys are created in Settings under MCP and API keys, up to 3.",
+   "api": "Contacts, tags and similar. The reference site blocks bots.",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Built-in MCP server on all plans, authenticated with an MCP key, acts on funnels, contacts, courses and more",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://help.systeme.io/article/2323-how-to-use-systeme-io-public-api",
+    "https://docs.composio.dev/toolkits/systeme_io",
+    "https://systeme.io/mcp"
+   ],
+   "conf": "M",
+   "status": "V",
+   "flags": [
+    "robots-blocked",
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYN"
+  },
+  {
+   "id": 38,
+   "name": "Pinterest",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Visual discovery and ads",
+   "auth": "OAuth 2",
+   "gate": "REVIEW",
+   "gate_note": "Trial access first. Pinterest reviews app requests.",
+   "api": "API v5 (version not named on the page)",
+   "mcp": "PARTIAL",
+   "mcp_note": "Announced but not launched: api.pinterest.com/mcp with OAuth, organic and Ads tools, sign-up page for the launch",
+   "verdict": "FRICTION",
+   "blocker": "Access review",
+   "evidence": [
+    "https://developers.pinterest.com/docs/getting-started/connect-app",
+    "https://developers.pinterest.com/about-pinterest-mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 39,
+   "name": "Threads (Meta)",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Social posting",
+   "auth": "OAuth 2.0 user tokens, 1 hour, exchangeable for 60 days",
+   "gate": "REVIEW",
+   "gate_note": "Testers by invite. App Review before public use.",
+   "api": "Profiles, media, publishing, replies, insights",
+   "mcp": "NONE",
+   "mcp_note": "Meta runs a devtools MCP for app tooling. Threads is not covered.",
+   "verdict": "FRICTION",
+   "blocker": "App Review",
+   "evidence": [
+    "https://developers.facebook.com/docs/threads/get-started"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 40,
+   "name": "SendGrid",
+   "category": "Marketing, Ads, Email and Social",
+   "what": "Email delivery (Twilio)",
+   "auth": "API key as a Bearer token",
+   "gate": "TRIAL",
+   "gate_note": "Free trial without a card. Length and limits not stated.",
+   "api": "REST v3",
+   "mcp": "PARTIAL",
+   "mcp_note": "Twilio docs MCP (public beta) indexes SendGrid docs. Docs-search only, no account access.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authentication",
+    "https://twilio.com/en-us/sendgrid",
+    "https://twilio.com/docs/ai/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YPU"
+  },
+  {
+   "id": 41,
+   "name": "Shopify",
+   "category": "Ecommerce",
+   "what": "Ecommerce platform",
+   "auth": "Token exchange, authorization code grant, client credentials. Online and offline access tokens.",
+   "gate": "FREE",
+   "gate_note": "Client ID and secret are issued when you create an app. Some scopes need Shopify approval.",
+   "api": "GraphQL Admin API",
+   "mcp": "PARTIAL",
+   "mcp_note": "Dev MCP runs locally with no auth and covers docs only. Store-facing MCP servers are listed by a directory and were not read.",
+   "verdict": "READY",
+   "blocker": "Protected customer data needs approval",
+   "evidence": [
+    "https://shopify.dev/docs/apps/build/authentication-authorization",
+    "https://shopify.dev/docs/apps/build/devmcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYP"
+  },
+  {
+   "id": 42,
+   "name": "WooCommerce",
+   "category": "Ecommerce",
+   "what": "Ecommerce plugin for WordPress",
+   "auth": "Consumer key and secret over Basic on HTTPS, or OAuth 1.0a on HTTP",
+   "gate": "FREE",
+   "gate_note": "Self-hosted. Keys are generated in store settings.",
+   "api": "REST v3, broad",
+   "mcp": "PARTIAL",
+   "mcp_note": "Official MCP through the WordPress MCP Adapter, developer preview, Application Password auth",
+   "verdict": "READY",
+   "blocker": "Base URL is per store",
+   "evidence": [
+    "https://woocommerce.github.io/woocommerce-rest-api-docs",
+    "https://developer.woocommerce.com/docs/features/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 43,
+   "name": "BigCommerce",
+   "category": "Ecommerce",
+   "what": "Ecommerce platform",
+   "auth": "X-Auth-Token from an OAuth-based API account, JWT for some APIs",
+   "gate": "ACCOUNT",
+   "gate_note": "Store-level accounts in the control panel, app credentials in the Developer Portal. Sandbox not stated.",
+   "api": "REST and GraphQL, broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Storefront MCP is generally available. Store Management MCP at api.bigcommerce.com/mcp is early access with OAuth 2.1. A separate Docs MCP exists.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.bigcommerce.com/developer/docs/overview/api-fundamentals/api-accounts",
+    "https://docs.bigcommerce.com/developer/api-reference/mcp/overview"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 44,
+   "name": "Salesforce Commerce Cloud",
+   "category": "Ecommerce",
+   "what": "Enterprise ecommerce",
+   "auth": "OAuth 2.0 client_credentials through Account Manager",
+   "gate": "CUSTOMER",
+   "gate_note": "An admin creates the API client in Account Manager. Customer-only is not stated outright.",
+   "api": "About 14 API families",
+   "mcp": "PARTIAL",
+   "mcp_note": "B2C CLI, MCP and Tooling SDK is linked as developer tooling. Not read.",
+   "verdict": "GATED",
+   "blocker": "Needs a B2C Commerce customer or partner org",
+   "evidence": [
+    "https://developer.salesforce.com/docs/commerce/commerce-api/guide/authorization-for-admin-apis.html"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 45,
+   "name": "Magento (Adobe Commerce)",
+   "category": "Ecommerce",
+   "what": "Ecommerce platform",
+   "auth": "Bearer tokens for admin and customer, OAuth 1.0a for integrations, session auth",
+   "gate": "FREE",
+   "gate_note": "Self-hosted. The page is written for PaaS customers and does not compare open source and paid.",
+   "api": "REST (GraphQL not on the page)",
+   "mcp": "PARTIAL",
+   "mcp_note": "Developer tooling only: Commerce App Builder MCP and Dropins tools. No store-data MCP.",
+   "verdict": "READY",
+   "blocker": "Base URL is per store",
+   "evidence": [
+    "https://developer.adobe.com/commerce/webapi/get-started/authentication",
+    "https://developer.adobe.com/commerce/extensibility/developer-agent/tools-overview"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 46,
+   "name": "Squarespace",
+   "category": "Ecommerce",
+   "what": "Website and store builder",
+   "auth": "API key or OAuth access token",
+   "gate": "PLAN",
+   "gate_note": "Custom app development is tied to the Commerce Advanced plan. OAuth clients are reviewed.",
+   "api": "Nine Commerce APIs",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.squarespace.com/mcp, commerce tools need sign-in, currently Claude and ChatGPT only",
+   "verdict": "FRICTION",
+   "blocker": "Plan gate for API keys",
+   "evidence": [
+    "https://developers.squarespace.com/commerce-apis/authentication-and-permissions",
+    "https://developers.squarespace.com/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYN"
+  },
+  {
+   "id": 47,
+   "name": "Ecwid",
+   "category": "Ecommerce",
+   "what": "Ecommerce widget (Lightspeed)",
+   "auth": "Access token from a custom (private) app. OAuth for public apps appears in the changelog.",
+   "gate": "PLAN",
+   "gate_note": "Only stores on paid plans can access the API. Ecwid support gives developers a free upgrade for testing.",
+   "api": "REST API",
+   "mcp": "NONE",
+   "mcp_note": "No MCP page in the docs index",
+   "verdict": "FRICTION",
+   "blocker": "Paid plan, or a free developer upgrade by email",
+   "evidence": [
+    "https://docs.ecwid.com/get-started/set-up-your-dev-environment-in-ecwid",
+    "https://docs.ecwid.com/llms.txt"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "unverified",
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 48,
+   "name": "Gumroad",
+   "category": "Ecommerce",
+   "what": "Creator commerce",
+   "auth": "OAuth application. The access token does not expire until revoked.",
+   "gate": "FREE",
+   "gate_note": "Create an application in settings and generate a token",
+   "api": "The API page is JavaScript-rendered so breadth was not read",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Gumroad-hosted MCP with OAuth per assistant: read products, sales and payouts, draft and publish products. Discovery at gumroad.com/.well-known/mcp.json.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://gumroad.com/help/article/280-create-application-api",
+    "https://gumroad.com/mcp"
+   ],
+   "conf": "H",
+   "status": "P",
+   "flags": [
+    "js-blocked",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 49,
+   "name": "Amazon Selling Partner",
+   "category": "Ecommerce",
+   "what": "Marketplace seller API",
+   "auth": "OAuth for public apps where sellers authorize. Private apps are self-authorized.",
+   "gate": "REVIEW",
+   "gate_note": "Professional selling account plus a developer profile application",
+   "api": "SP-API",
+   "mcp": "PARTIAL",
+   "mcp_note": "Beta Selling Partner plugin for Claude, US stores. The endpoint URL appears only in the Claude directory.",
+   "verdict": "GATED",
+   "blocker": "Seller account and developer registration",
+   "evidence": [
+    "https://developer-docs.amazon/sp-api/docs/sp-api-registration-overview",
+    "https://aboutamazon.com/news/innovation-at-amazon/seller-assistant-plugin-amazon-quick-claude"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 50,
+   "name": "fanbasis",
+   "category": "Ecommerce",
+   "what": "Creator payments and checkout",
+   "auth": "API key in an x-api-key header, per a GitHub docs repo",
+   "gate": "UNKNOWN",
+   "gate_note": "The site has Create an Account and Book a Demo. How keys are issued is not confirmed.",
+   "api": "REST: checkout, subscriptions, customers, refunds, webhooks. Sandbox at api-sandbox.commas.net.",
+   "mcp": "SECONDARY",
+   "mcp_note": "The FanBasis GitHub repo ships a local MCP bundle, but the README clones a personal account and fanbasis.com does not link it. Still not vendor-confirmed.",
+   "verdict": "UNCLEAR",
+   "blocker": "Confirm the GitHub docs are official",
+   "evidence": [
+    "https://github.com/FanBasis/fbnewapi",
+    "https://fanbasis.com"
+   ],
+   "conf": "L",
+   "status": "U",
+   "flags": [
+    "identity",
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 51,
+   "name": "DataForSEO",
+   "category": "Data, SEO and Scraping",
+   "what": "SEO data APIs",
+   "auth": "HTTP Basic with API login and password",
+   "gate": "FREE",
+   "gate_note": "Free account with credentials on the dashboard, per the blind audit. Credit amount not confirmed.",
+   "api": "12 API families",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.dataforseo.com/v3/mcp with Basic auth, plus npm and Docker",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.dataforseo.com/v3/auth",
+    "https://dataforseo.com/model-context-protocol"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 52,
+   "name": "SE Ranking",
+   "category": "Data, SEO and Scraping",
+   "what": "SEO platform",
+   "auth": "API key. Header format not stated.",
+   "gate": "TRIAL",
+   "gate_note": "API is included in every plan and a trial account can test it. Pay-as-you-go needs a 50 dollar deposit.",
+   "api": "Data API and Project API, REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Hosted at api.seranking.com/mcp, OAuth 2.1 or an X-Api-Key header",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://seranking.com/api.html",
+    "https://seranking.com/api/integrations/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YNY"
+  },
+  {
+   "id": 53,
+   "name": "Ahrefs",
+   "category": "Data, SEO and Scraping",
+   "what": "SEO platform",
+   "auth": "API key",
+   "gate": "PLAN",
+   "gate_note": "API on eligible paid plans. Other plans get limited free test queries.",
+   "api": "REST v3, broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "api.ahrefs.com/mcp/mcp, paid plans from Lite",
+   "verdict": "FRICTION",
+   "blocker": "Paid plan",
+   "evidence": [
+    "https://docs.ahrefs.com/docs/api/reference/introduction",
+    "https://docs.ahrefs.com/docs/mcp/reference/introduction"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YPY"
+  },
+  {
+   "id": 54,
+   "name": "MrScraper",
+   "category": "Data, SEO and Scraping",
+   "what": "AI web scraping",
+   "auth": "API token. Header not stated.",
+   "gate": "ACCOUNT",
+   "gate_note": "Token plan and billing pages exist. Free trial not stated.",
+   "api": "Scraper API, CLI and SDKs",
+   "mcp": "OFFICIAL",
+   "mcp_note": "MrScraper MCP server with source on GitHub",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.mrscraper.com"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-U"
+  },
+  {
+   "id": 55,
+   "name": "Apify",
+   "category": "Data, SEO and Scraping",
+   "what": "Web scraping and automation",
+   "auth": "Bearer API token",
+   "gate": "ACCOUNT",
+   "gate_note": "Token from the Console Integrations page. Free tier not stated.",
+   "api": "REST: Actors, runs, storage, webhooks, schedules",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.apify.com, OAuth or Bearer token",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.apify.com/api/v2",
+    "https://docs.apify.com/platform/integrations/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 56,
+   "name": "Firecrawl",
+   "category": "Data, SEO and Scraping",
+   "what": "Web scraping for LLMs",
+   "auth": "Bearer API key. Basic requests work without a key.",
+   "gate": "FREE",
+   "gate_note": "Free account. Credit amount not stated.",
+   "api": "REST v2: scrape, search, crawl, map",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.firecrawl.dev/v2/mcp, OAuth, API key, or keyless within daily limits",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.firecrawl.dev/introduction",
+    "https://docs.firecrawl.dev/mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 57,
+   "name": "Bright Data",
+   "category": "Data, SEO and Scraping",
+   "what": "Proxy and web data",
+   "auth": "API key as a Bearer token, with separate agent API keys",
+   "gate": "ACCOUNT",
+   "gate_note": "An admin adds the key in Account settings. Trial and KYC for the key are not stated.",
+   "api": "Unlocker, SERP, Browsers, Scrapers",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Bright Data MCP server with 5,000 free requests per month",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.brightdata.com/api-reference/authentication",
+    "https://docs.brightdata.com/mcp-server/overview"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 58,
+   "name": "Sherlock",
+   "category": "Data, SEO and Scraping",
+   "what": "Open-source username search CLI",
+   "auth": "None",
+   "gate": "LOCAL",
+   "gate_note": "Free and open source",
+   "api": "Local Python CLI. The README links a hosted Sherlock Actor on Apify.",
+   "mcp": "NA",
+   "mcp_note": "Not a hosted service",
+   "verdict": "NOT_API",
+   "blocker": "Wrap as a local tool or use the Apify actor",
+   "evidence": [
+    "https://github.com/sherlock-project/sherlock"
+   ],
+   "conf": "M",
+   "status": "V",
+   "flags": [
+    "not-saas"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "N",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 59,
+   "name": "Waterfall.io",
+   "category": "Data, SEO and Scraping",
+   "what": "B2B contact and company enrichment",
+   "auth": "API key in an x-api-key header",
+   "gate": "SALES",
+   "gate_note": "Docs say to contact the team for access and pricing",
+   "api": "REST with async jobs",
+   "mcp": "NONE",
+   "mcp_note": "docs.waterfall.io/llms.txt lists agent-skills pages but no MCP",
+   "verdict": "GATED",
+   "blocker": "Sales-gated key",
+   "evidence": [
+    "https://docs.waterfall.io/v1/quickstart",
+    "https://docs.waterfall.io/v1/overview",
+    "https://docs.waterfall.io/llms.txt"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 60,
+   "name": "Clay",
+   "category": "Data, SEO and Scraping",
+   "what": "GTM data enrichment",
+   "auth": "Not stated",
+   "gate": "PLAN",
+   "gate_note": "No general public API. Per-table webhooks and HTTP actions. A People and Company lookup API is Enterprise only.",
+   "api": "Limited",
+   "mcp": "OFFICIAL",
+   "mcp_note": "api.clay.com/v3/mcp, OAuth 2.0 with PKCE and dynamic registration, uses workspace credits",
+   "verdict": "GATED",
+   "blocker": "No general API",
+   "evidence": [
+    "https://clay.com/university/guide/using-clay-as-an-api",
+    "https://clay.earth",
+    "https://university.clay.com/docs/connect-to-clay-mcp"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "name-collision",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "?",
+   "first_pass_score_auth_gate_mcp": "-YU"
+  },
+  {
+   "id": 61,
+   "name": "GitHub",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Code hosting",
+   "auth": "Personal access token, GitHub App token, OAuth app token",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated",
+   "api": "REST (GraphQL documented separately)",
+   "mcp": "OFFICIAL",
+   "mcp_note": "api.githubcopilot.com/mcp, OAuth or a personal access token",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+    "https://github.com/github/github-mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 62,
+   "name": "Vercel",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Frontend cloud",
+   "auth": "Bearer access tokens from account settings. Sign in with Vercel OAuth tokens also work, per the blind audit (vendor page not re-opened).",
+   "gate": "FREE",
+   "gate_note": "MCP is available on all plans",
+   "api": "REST, very broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.vercel.com, OAuth, all plans",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://vercel.com/docs/rest-api",
+    "https://vercel.com/docs/agent-resources/vercel-mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 63,
+   "name": "Netlify",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Web hosting",
+   "auth": "Bearer: personal access token or OAuth2",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated",
+   "api": "REST: sites, deploys, env vars, forms, hooks",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.netlify.com/mcp, plus a local @netlify/mcp package",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.netlify.com/api/get-started",
+    "https://docs.netlify.com/build/build-with-ai/netlify-mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 64,
+   "name": "Cloudflare",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Network and developer platform",
+   "auth": "API token as Bearer. The global API key is legacy.",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated",
+   "api": "REST v4, plus GraphQL",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.cloudflare.com/mcp covers over 2,500 endpoints, OAuth or API token",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.cloudflare.com/fundamentals/api/get-started/create-token",
+    "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 65,
+   "name": "Supabase",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Postgres backend platform",
+   "auth": "Personal access token or OAuth2, sent as Bearer",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated",
+   "api": "Management API, about 20 endpoint groups",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.supabase.com/mcp, browser sign-in or a personal access token",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://supabase.com/docs/reference/api/introduction",
+    "https://supabase.com/docs/guides/getting-started/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 66,
+   "name": "Neo4j",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Graph database",
+   "auth": "Aura API uses OAuth 2.0 client credentials",
+   "gate": "FREE",
+   "gate_note": "All tiers can create Aura API credentials",
+   "api": "Aura API",
+   "mcp": "PARTIAL",
+   "mcp_note": "Neo4j MCP version 2 is documented by the vendor. Install and auth are on other pages.",
+   "verdict": "READY",
+   "blocker": "Database drivers and the Aura API are separate surfaces",
+   "evidence": [
+    "https://neo4j.com/docs/aura/api/authentication",
+    "https://neo4j.com/docs/mcp/current"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 67,
+   "name": "Snowflake",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Data cloud",
+   "auth": "OAuth, key-pair JWT, workload identity federation, programmatic access tokens",
+   "gate": "TRIAL",
+   "gate_note": "30-day trial with credits, per the blind audit (vendor page not re-opened)",
+   "api": "SQL API",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Snowflake-managed MCP server created per schema with CREATE MCP SERVER, OAuth or access token",
+   "verdict": "READY",
+   "blocker": "Per-account URL",
+   "evidence": [
+    "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating",
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 68,
+   "name": "MongoDB Atlas",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Managed database",
+   "auth": "Service accounts with OAuth 2.0 client credentials. API keys with HTTP Digest are legacy.",
+   "gate": "ACCOUNT",
+   "gate_note": "Free tier not stated on the page read",
+   "api": "Atlas Administration API",
+   "mcp": "PARTIAL",
+   "mcp_note": "MongoDB MCP Server is documented in local and Atlas-managed forms. Details are on other pages.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://mongodb.com/docs/atlas/api/api-authentication",
+    "https://mongodb.com/docs/mcp-server/get-started"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 69,
+   "name": "Datadog",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Observability",
+   "auth": "API key plus application key",
+   "gate": "ACCOUNT",
+   "gate_note": "Trial not stated on the page read",
+   "api": "Dozens of API areas",
+   "mcp": "PARTIAL",
+   "mcp_note": "Datadog MCP Server is documented. The endpoint is on a setup page and it is described as under significant development.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.datadoghq.com/api/latest/authentication",
+    "https://docs.datadoghq.com/bits_ai/mcp_server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 70,
+   "name": "Sentry",
+   "category": "Developer, Infra and Data platforms",
+   "what": "Error monitoring",
+   "auth": "Bearer auth tokens, personal tokens, OAuth2, DSN auth, legacy API keys",
+   "gate": "FREE",
+   "gate_note": "Tokens from an internal integration. Plan gate not stated.",
+   "api": "HTTP API under /api/0, about 28 sections",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.sentry.dev/mcp, OAuth",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.sentry.io/api/auth",
+    "https://mcp.sentry.dev"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 71,
+   "name": "Notion",
+   "category": "Productivity and Project Management",
+   "what": "Docs and wiki",
+   "auth": "Internal connection tokens, personal access tokens, OAuth 2.0 for public connections",
+   "gate": "FREE",
+   "gate_note": "Created in the Developer portal. Internal connections need a workspace owner. Public ones are reviewed.",
+   "api": "REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Remote MCP server hosted by Notion, OAuth",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.notion.com/docs/authorization",
+    "https://developers.notion.com/docs/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "P-Y"
+  },
+  {
+   "id": 72,
+   "name": "Airtable",
+   "category": "Productivity and Project Management",
+   "what": "Spreadsheet database",
+   "auth": "Personal access tokens and OAuth, sent as Bearer",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated",
+   "api": "REST v0",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.airtable.com/mcp, OAuth or a personal access token, all plans",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://airtable.com/developers/web/api/authentication",
+    "https://support.airtable.com/docs/using-the-airtable-mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-U"
+  },
+  {
+   "id": 73,
+   "name": "Linear",
+   "category": "Productivity and Project Management",
+   "what": "Issue tracking",
+   "auth": "OAuth2 and personal API keys",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated",
+   "api": "GraphQL",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.linear.app/mcp, OAuth 2.1 or an API key",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://linear.app/developers/graphql",
+    "https://linear.app/docs/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 74,
+   "name": "Jira",
+   "category": "Productivity and Project Management",
+   "what": "Issue tracking (Atlassian)",
+   "auth": "Basic auth with email and API token. OAuth 2.0 (3LO) or Forge for apps.",
+   "gate": "FREE",
+   "gate_note": "Tokens come from the Atlassian account. Plan gate not stated.",
+   "api": "REST v3, broad",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.atlassian.com/v2/mcp, OAuth 2.1 with API token as an option",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis",
+    "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro",
+    "https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 75,
+   "name": "Asana",
+   "category": "Productivity and Project Management",
+   "what": "Work management",
+   "auth": "Personal access token, Service Account (Enterprise), OAuth, OpenID Connect",
+   "gate": "FREE",
+   "gate_note": "Personal token from the developer console. Plan gate not stated.",
+   "api": "REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Asana offers an MCP server through app integration. The blind audit gives the endpoint as mcp.asana.com/v2/mcp with OAuth.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.asana.com/docs/authentication",
+    "https://developers.asana.com/docs/mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "P-Y"
+  },
+  {
+   "id": 76,
+   "name": "Monday.com",
+   "category": "Productivity and Project Management",
+   "what": "Work management",
+   "auth": "Personal V2 API token, plus OAuth app tokens with scopes",
+   "gate": "FREE",
+   "gate_note": "A free developer account is suggested for testing",
+   "api": "GraphQL at api.monday.com/v2",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.monday.com/mcp, hosted, API token, OAuth or dynamic registration, 60+ read and write tools",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developer.monday.com/api-reference/docs/authentication",
+    "https://developer.monday.com/api-reference/docs/mondaycom-mcp.md"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YY-"
+  },
+  {
+   "id": 77,
+   "name": "ClickUp",
+   "category": "Productivity and Project Management",
+   "what": "Work management",
+   "auth": "Personal API token and OAuth 2.0",
+   "gate": "FREE",
+   "gate_note": "Plan gate not stated",
+   "api": "REST v2 and v3",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.clickup.com/mcp, OAuth only, all plans",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developer.clickup.com/docs/authentication",
+    "https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 78,
+   "name": "Coda",
+   "category": "Productivity and Project Management",
+   "what": "Docs and tables",
+   "auth": "Bearer API token",
+   "gate": "FREE",
+   "gate_note": "The API is free in free and paid workspaces",
+   "api": "REST",
+   "mcp": "PARTIAL",
+   "mcp_note": "Vendor MCP in beta: read, write and delete over docs, pages and tables",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://coda.io/developers/apis/v1",
+    "https://coda.io/resources/mcp/tools-and-endpoints"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 79,
+   "name": "Smartsheet",
+   "category": "Productivity and Project Management",
+   "what": "Spreadsheet work management",
+   "auth": "OAuth 2.0 or a raw access token",
+   "gate": "ACCOUNT",
+   "gate_note": "Token is generated in the UI. Plan requirement not stated.",
+   "api": "REST (not described on the page read)",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Generally available since 24 Mar 2026, OAuth 2.0 or a personal access token, on Business, Enterprise and AWM plans",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication",
+    "https://developers.smartsheet.com/ai-mcp/smartsheet/mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-U"
+  },
+  {
+   "id": 80,
+   "name": "Harvest",
+   "category": "Productivity and Project Management",
+   "what": "Time tracking",
+   "auth": "Personal access token or OAuth2, with Harvest-Account-Id and User-Agent headers",
+   "gate": "ACCOUNT",
+   "gate_note": "From the Developers section of Harvest ID. Plan gate not stated.",
+   "api": "REST v2",
+   "mcp": "OFFICIAL",
+   "mcp_note": "api.harvestapp.com/mcp, OAuth: time, projects, invoices and expenses",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://help.getharvest.com/api-v2/authentication-api/authentication/authentication",
+    "https://support.getharvest.com/hc/en-us/articles/46293697226381-Harvest-MCP"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "legacy-hint",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 81,
+   "name": "Stripe",
+   "category": "Finance and Fintech",
+   "what": "Payments",
+   "auth": "API keys over HTTP Basic or Bearer, restricted keys, test keys for sandboxes. OAuth 2.0 for Stripe Apps, per the blind audit.",
+   "gate": "FREE",
+   "gate_note": "Keys in the Dashboard, with sandboxes for testing",
+   "api": "REST",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.stripe.com, OAuth or an agent API key. Plain secret keys stop working there on 11 Jan 2027.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.stripe.com/api/authentication",
+    "https://docs.stripe.com/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "audit-corrected"
+   ],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYY"
+  },
+  {
+   "id": 82,
+   "name": "Plaid",
+   "category": "Finance and Fintech",
+   "what": "Bank data APIs",
+   "auth": "API keys from the Dashboard. Key names are not on the page read.",
+   "gate": "REVIEW",
+   "gate_note": "Sandbox is free. Production means applying for access.",
+   "api": "REST",
+   "mcp": "PARTIAL",
+   "mcp_note": "Dashboard MCP server for diagnostics and analytics only, OAuth token, under active development",
+   "verdict": "FRICTION",
+   "blocker": "Production approval",
+   "evidence": [
+    "https://plaid.com/docs/sandbox",
+    "https://plaid.com/docs/resources/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "YYP"
+  },
+  {
+   "id": 83,
+   "name": "Binance",
+   "category": "Finance and Fintech",
+   "what": "Crypto exchange",
+   "auth": "X-MBX-APIKEY header plus an HMAC, RSA or Ed25519 signature",
+   "gate": "ACCOUNT",
+   "gate_note": "Keys from API Management in a Binance account. KYC and region limits are not stated on the page.",
+   "api": "Spot REST API",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Hosted agent.binance.com/mcp/agentic with consent-screen scopes. Trades on an agentic sub-account, no withdrawals.",
+   "verdict": "FRICTION",
+   "blocker": "Account verification and regional limits (not verified)",
+   "evidence": [
+    "https://developers.binance.com/docs/binance-spot-api-docs/rest-api/request-security",
+    "https://developers.binance.com/en/docs/agent-native/mcp-server/agentic"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "legacy-hint",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-U"
+  },
+  {
+   "id": 84,
+   "name": "Paygent Connect",
+   "category": "Finance and Fintech",
+   "what": "Marketplace payments, possibly an NMI white label",
+   "auth": "Not confirmed",
+   "gate": "UNKNOWN",
+   "gate_note": "Not confirmed. Likely needs a merchant account.",
+   "api": "Homepage shows sample code. Docs not reachable.",
+   "mcp": "NONE",
+   "mcp_note": "gopaygent.com has no MCP, API docs or developer links",
+   "verdict": "UNCLEAR",
+   "blocker": "Identity and docs unconfirmed",
+   "evidence": [
+    "https://gopaygent.com"
+   ],
+   "conf": "L",
+   "status": "U",
+   "flags": [
+    "identity",
+    "prompt-injection",
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "?",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 85,
+   "name": "iPayX",
+   "category": "Finance and Fintech",
+   "what": "FX rate verification for cross-border payments",
+   "auth": "Not stated on the vendor docs page. Third-party MCP listings mention a Bearer token.",
+   "gate": "UNKNOWN",
+   "gate_note": "Not stated on the vendor docs page",
+   "api": "Vendor docs page shows no API details",
+   "mcp": "SECONDARY",
+   "mcp_note": "Two GitHub orgs publish an iPayX MCP server (iPAYX-Technologies and Ipayx-stellar). Neither is linked from ipayx.ai.",
+   "verdict": "UNCLEAR",
+   "blocker": "Vendor API docs not found",
+   "evidence": [
+    "https://ipayx.ai/docs",
+    "https://github.com/Ipayx-stellar/mcp-fx-audit"
+   ],
+   "conf": "L",
+   "status": "U",
+   "flags": [
+    "identity"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "?",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 86,
+   "name": "QuickBooks",
+   "category": "Finance and Fintech",
+   "what": "Accounting (Intuit)",
+   "auth": "OAuth 2.0 through Intuit. The MCP connection needs a client ID and secret.",
+   "gate": "FREE",
+   "gate_note": "A sandbox company comes automatically with a developer profile, per Intuit docs read through llms.txt. Production review not confirmed.",
+   "api": "Not read",
+   "mcp": "OFFICIAL",
+   "mcp_note": "QuickBooks connector for Claude is an MCP connection, read and write, US only. A local early-preview server runs against a sandbox.",
+   "verdict": "READY",
+   "blocker": "US-only MCP. Production app review not confirmed.",
+   "evidence": [
+    "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization",
+    "https://quickbooks.intuit.com/learn-support/en-us/help-article/accounting-bookkeeping/use-quickbooks-connector-claude/L3YBlo6Ht_US_en_US",
+    "https://developer.intuit.com/llms.txt"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "js-blocked",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YP-"
+  },
+  {
+   "id": 87,
+   "name": "Xero",
+   "category": "Finance and Fintech",
+   "what": "Accounting",
+   "auth": "OAuth 2.0 is required for all new integrations. The remote MCP uses OAuth 2.0 with PKCE.",
+   "gate": "FREE",
+   "gate_note": "Free Demo Company allows real calls against demo data. Connection limits before certification not confirmed.",
+   "api": "Not read",
+   "mcp": "OFFICIAL",
+   "mcp_note": "api.xero.com/mcp/v1, OAuth 2.0 with PKCE, Core plan or above (Starter gets the demo org only). Beta-testing terms page exists.",
+   "verdict": "READY",
+   "blocker": "MCP needs a Core plan or above",
+   "evidence": [
+    "https://developer.xero.com/documentation/guides/oauth2/overview",
+    "https://developer.xero.com/faq/remote-mcp",
+    "https://developer.xero.com/faq/getting-started"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "js-blocked",
+    "mcp-recheck"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "YP-"
+  },
+  {
+   "id": 88,
+   "name": "Brex",
+   "category": "Finance and Fintech",
+   "what": "Corporate cards and spend",
+   "auth": "User token as Bearer. Partner OAuth is on a separate guide.",
+   "gate": "CUSTOMER",
+   "gate_note": "An account admin or card admin creates the token inside a Brex dashboard",
+   "api": "Team, payments, expenses and related APIs",
+   "mcp": "NONE",
+   "mcp_note": "Not stated",
+   "verdict": "GATED",
+   "blocker": "Needs a Brex customer account",
+   "evidence": [
+    "https://developer.brex.com/docs/authentication"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": "YYU"
+  },
+  {
+   "id": 89,
+   "name": "Ramp",
+   "category": "Finance and Fintech",
+   "what": "Corporate cards and spend",
+   "auth": "OAuth 2.0. Token from /developer/v1/token with a client ID and secret.",
+   "gate": "ACCOUNT",
+   "gate_note": "A sandbox exists. Prerequisites are not stated in the docs index.",
+   "api": "Developer API v1",
+   "mcp": "OFFICIAL",
+   "mcp_note": "The vendor MCP guide covers two servers: your Ramp account and Ramp Data benchmarks",
+   "verdict": "FRICTION",
+   "blocker": "Needs a Ramp account or sandbox",
+   "evidence": [
+    "https://docs.ramp.com/llms.txt"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [
+    "js-blocked"
+   ],
+   "source": "this run",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 90,
+   "name": "PitchBook",
+   "category": "Finance and Fintech",
+   "what": "Private market data",
+   "auth": "API key or token issued by PitchBook",
+   "gate": "SALES",
+   "gate_note": "Request through the Direct Data team or Plugins and Apps in the platform",
+   "api": "REST at api.pitchbook.com",
+   "mcp": "OFFICIAL",
+   "mcp_note": "PitchBook Premium Connector is MCP-based and cloud-hosted, needs a PitchBook licence and SSO. Endpoint URL appears only in the Claude directory.",
+   "verdict": "GATED",
+   "blocker": "Needs a customer contract",
+   "evidence": [
+    "https://pitchbook.com/help/PitchBook-api",
+    "https://pitchbook.com/help/getting-started-with-pitchbook-premium-connector"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 91,
+   "name": "NotebookLM",
+   "category": "AI, Research and Media-native",
+   "what": "Research notebook (Google)",
+   "auth": "Google Cloud OAuth scopes plus an IAM role",
+   "gate": "PLAN",
+   "gate_note": "API exists only for the Enterprise edition and needs a license",
+   "api": "v1alpha REST: notebooks, sources, audio overviews",
+   "mcp": "NONE",
+   "mcp_note": "Not in Google Cloud MCP supported products. All NotebookLM MCP servers are community-built.",
+   "verdict": "GATED",
+   "blocker": "Enterprise license and an alpha API",
+   "evidence": [
+    "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks",
+    "https://docs.cloud.google.com/mcp/supported-products"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 92,
+   "name": "Otter AI",
+   "category": "AI, Research and Media-native",
+   "what": "Meeting transcription",
+   "auth": "MCP uses OAuth. The REST API and webhooks are Enterprise only.",
+   "gate": "FREE",
+   "gate_note": "The pricing page lists the Otter MCP server on the free Basic plan and API and Webhooks on Enterprise",
+   "api": "REST is Enterprise only",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.otter.ai/mcp, OAuth, three tools",
+   "verdict": "READY",
+   "blocker": "Only reachable through MCP unless Enterprise",
+   "evidence": [
+    "https://help.otter.ai/hc/en-us/articles/35287607569687-Otter-MCP-Server",
+    "https://otter.ai/pricing"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 93,
+   "name": "Fathom",
+   "category": "AI, Research and Media-native",
+   "what": "Meeting recorder",
+   "auth": "API key in X-Api-Key. OAuth for public integrations.",
+   "gate": "FREE",
+   "gate_note": "Key from User Settings. API open to all users since Oct 2025.",
+   "api": "REST: meetings, recordings, webhooks",
+   "mcp": "OFFICIAL",
+   "mcp_note": "Official MCP server at api.fathom.ai/mcp for meeting data",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://developers.fathom.ai/quickstart",
+    "https://help.fathom.video/en/articles/6220097",
+    "https://developers.fathom.ai/mcp-docs"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 94,
+   "name": "Consensus",
+   "category": "AI, Research and Media-native",
+   "what": "Academic paper search",
+   "auth": "API key in x-api-key for REST. OAuth applies to the MCP according to a non-vendor source.",
+   "gate": "FREE",
+   "gate_note": "Every plan includes API access. Free plan has 30 calls a month.",
+   "api": "REST at api.consensus.app",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.consensus.app/mcp, OAuth 2.1 with dynamic registration, plus a rate-limited anonymous tier, confirmed in the vendor llms file",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.consensus.app/api-get-started",
+    "https://consensus.app/llms-full.txt"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "name-collision",
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 95,
+   "name": "Reducto",
+   "category": "AI, Research and Media-native",
+   "what": "Document parsing API",
+   "auth": "Not read. The docs index lists API key management in Studio.",
+   "gate": "ACCOUNT",
+   "gate_note": "Free credits not stated in the docs index",
+   "api": "Document parsing API",
+   "mcp": "PARTIAL",
+   "mcp_note": "An MCP Server page is in the vendor docs index. Not read.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.reducto.ai/llms.txt"
+   ],
+   "conf": "M",
+   "status": "P",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "--U"
+  },
+  {
+   "id": 96,
+   "name": "Devin",
+   "category": "AI, Research and Media-native",
+   "what": "AI software engineer (Cognition)",
+   "auth": "Service-user key with a cog_ prefix or a personal access token, sent as Bearer",
+   "gate": "ACCOUNT",
+   "gate_note": "Teams and Enterprise quick starts. Plan gate not stated.",
+   "api": "api.devin.ai/v3: sessions, knowledge, playbooks, secrets",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.devin.ai/mcp, Bearer API key",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://docs.devin.ai/api-reference/overview",
+    "https://docs.devin.ai/work-with-devin/devin-mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "this run",
+   "auth_family": "K",
+   "first_pass_score_auth_gate_mcp": "Y-Y"
+  },
+  {
+   "id": 97,
+   "name": "higgsfield",
+   "category": "AI, Research and Media-native",
+   "what": "AI image and video generation",
+   "auth": "OAuth sign-in for MCP and CLI. No API key.",
+   "gate": "ACCOUNT",
+   "gate_note": "Account needed. Every generation uses credits.",
+   "api": "MCP and CLI. A public REST API is not confirmed.",
+   "mcp": "OFFICIAL",
+   "mcp_note": "mcp.higgsfield.ai/mcp",
+   "verdict": "READY",
+   "blocker": "Cost per generation when testing",
+   "evidence": [
+    "https://higgsfield.ai/cli"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "O",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 98,
+   "name": "Mermaid CLI",
+   "category": "AI, Research and Media-native",
+   "what": "Open-source diagram rendering CLI",
+   "auth": "None",
+   "gate": "LOCAL",
+   "gate_note": "Free and open source",
+   "api": "Local CLI (mmdc) and a Docker image",
+   "mcp": "NA",
+   "mcp_note": "Not a hosted service",
+   "verdict": "NOT_API",
+   "blocker": "Wrap as a local tool",
+   "evidence": [
+    "https://github.com/mermaid-js/mermaid-cli"
+   ],
+   "conf": "M",
+   "status": "V",
+   "flags": [
+    "not-saas"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "N",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 99,
+   "name": "YouTube Transcript",
+   "category": "AI, Research and Media-native",
+   "what": "YouTube transcript API (transcriptapi.com)",
+   "auth": "API key as a Bearer token. MCP accepts OAuth 2.1 or Bearer.",
+   "gate": "FREE",
+   "gate_note": "100 free credits on signup",
+   "api": "REST at transcriptapi.com/api/v2",
+   "mcp": "OFFICIAL",
+   "mcp_note": "transcriptapi.com/mcp, 12 tools",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://transcriptapi.com/docs/getting-started",
+    "https://transcriptapi.com/docs/mcp"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "name-collision"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": ""
+  },
+  {
+   "id": 100,
+   "name": "Grain",
+   "category": "AI, Research and Media-native",
+   "what": "Meeting recording and notes",
+   "auth": "Personal Access Token, Workspace Access Token, OAuth2",
+   "gate": "FREE",
+   "gate_note": "Personal tokens on every plan including Free. Workspace tokens on Business and Enterprise.",
+   "api": "REST public API v2",
+   "mcp": "OFFICIAL",
+   "mcp_note": "api.grain.com/_/mcp, OAuth or a personal access token. Some features need Business or Enterprise.",
+   "verdict": "READY",
+   "blocker": "",
+   "evidence": [
+    "https://support.grain.com/en/articles/15507288-grain-api",
+    "https://support.grain.com/en/articles/15297887-export-meetings",
+    "https://support.grain.com/en/articles/14811968-how-to-use-the-grain-mcp-server"
+   ],
+   "conf": "H",
+   "status": "V",
+   "flags": [
+    "resolved-conflict",
+    "mcp-recheck"
+   ],
+   "source": "earlier research task, rechecked where noted",
+   "auth_family": "OK",
+   "first_pass_score_auth_gate_mcp": ""
+  }
+ ]
+}

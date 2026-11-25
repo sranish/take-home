@@ -1,0 +1,20 @@
+10|DealCloud|api.docs.dealcloud.com
+8|Close|developer.close.com
+13|Freshdesk|developers.freshdesk.com
+20|Gladly|developer.gladly.com
+29|Aircall|developers.aircall.io
+22|Twilio|twilio.com
+39|Threads (Meta)|developers.facebook.com
+37|systeme.io|help.systeme.io
+47|Ecwid|docs.ecwid.com
+43|BigCommerce|docs.bigcommerce.com
+51|DataForSEO|docs.dataforseo.com
+52|SE Ranking|seranking.com
+62|Vercel|vercel.com
+67|Snowflake|docs.snowflake.com
+75|Asana|developers.asana.com
+72|Airtable|airtable.com
+81|Stripe|docs.stripe.com
+85|iPayX|ipayx.ai
+96|Devin|docs.devin.ai
+98|Mermaid CLI|github.com

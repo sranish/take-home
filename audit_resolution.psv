@@ -1,0 +1,19 @@
+# id|field|how the disagreement was settled
+13|mcp|Audit was right. The vendor page confirms general availability from 10 Sep 2026. Row corrected.
+13|auth|Audit accepted. No OAuth flow is documented. Row corrected.
+20|gate|Same finding, neighbouring codes. There is no public signup either way. Kept.
+29|gate|Still open. The audit saw free test access on the pricing page with no length given.
+29|mcp|Audit was right. The vendor help page confirms a read-only beta. Row corrected.
+22|auth|Audit was right. The vendor page recommends OAuth 2.0. Row corrected.
+37|gate|Audit was right. The vendor MCP page says all plans. Row corrected.
+37|mcp|Audit was right. The vendor page confirms a built-in server. Row corrected.
+47|auth|Audit was right. The token comes from a custom app. Row corrected.
+47|gate|Audit was right. The vendor page says paid plans only. Row corrected.
+43|mcp|Audit was right. The vendor page lists Storefront MCP as generally available. Row corrected.
+51|gate|Audit accepted without re-opening the page. Row corrected.
+52|mcp|Audit was right. The vendor page gives the hosted URL. Row corrected.
+62|auth|Audit accepted without re-opening the page. Row corrected.
+67|gate|Audit accepted without re-opening the page. Row corrected.
+81|auth|Audit accepted without re-opening the page. Row corrected.
+85|auth|Still open. The audit's source is a GitHub README, not the vendor site.
+85|mcp|Still open. Two GitHub orgs publish an iPayX MCP and neither is linked from ipayx.ai.
